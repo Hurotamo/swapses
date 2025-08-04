@@ -2,24 +2,7 @@
 
 A secure, deterministic ETH wallet splitting system that allows users to split their parent wallet into 100 deterministic child wallets using Rust cryptography and React Native.
 
-## 🌐 System Overview
 
-```mermaid
-graph TD
-    A[User Generates Seed Phrase] --> B[Derive 1 Parent Wallet Address]
-    B --> C[User Funds Parent Wallet with ETH]
-    C --> D[User Initiates "Split" via Client App]
-    D --> E[Generate 100 Deterministic Child Wallet Addresses]
-    E --> F[Client Constructs TX: Split ETH Equally Across 100 Child Wallets]
-    F --> G{Sign TX with Parent Wallet?}
-    G -->|Yes| H[Send Transaction to Base/Lisk Blockchain]
-    G -->|No| I[Abort - Signature Required]
-    H --> J{Transaction Mined?}
-    J -->|Yes| K[User Controls 101 Wallets (1 Parent + 100 Children)]
-    J -->|No| L[Retry or Abort]
-    L -->|Retry| H
-    L -->|Abort| I
-```
 
 ## 🛠 Tech Stack
 
