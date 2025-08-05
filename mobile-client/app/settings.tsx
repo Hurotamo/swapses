@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import { View, StyleSheet, Alert, ScrollView } from 'react-native';
 import { Button, Card, Title, Paragraph, Switch, List, Divider, Text } from 'react-native-paper';
 import { router } from 'expo-router';
@@ -7,15 +7,15 @@ import { SecurityService, SecurityConfig } from '../src/services/SecurityService
 import { WalletService } from '../src/services/WalletService';
 
 export default function SettingsScreen() {
-  const [securityConfig, setSecurityConfig] = useState<SecurityConfig>({
+  const [securityConfig, setSecurityConfig] = React.useState<SecurityConfig>({
     biometricsEnabled: false,
     pinEnabled: false,
     autoLockTimeout: 5,
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [biometricsAvailable, setBiometricsAvailable] = useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [biometricsAvailable, setBiometricsAvailable] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     loadSettings();
   }, []);
 
