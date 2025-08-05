@@ -76,8 +76,13 @@ export class WalletService {
       this.initialize();
     }
 
-    const balance = await this.provider.getBalance(address);
-    return ethers.formatEther(balance);
+    try {
+      const balance = await this.provider.getBalance(address);
+      return ethers.formatEther(balance);
+    } catch (error) {
+      console.error('Failed to get wallet balance:', error);
+      return '0';
+    }
   }
 
   static async estimateGasPrice(): Promise<string> {
@@ -85,7 +90,12 @@ export class WalletService {
       this.initialize();
     }
 
-    const gasPrice = await this.provider.getFeeData();
-    return gasPrice.gasPrice ? ethers.formatUnits(gasPrice.gasPrice, 'gwei') : '0';
+    try {
+      const gasPrice = await this.provider.getFeeData();
+      return gasPrice.gasPrice ? ethers.formatUnits(gasPrice.gasPrice, 'gwei') : '0';
+    } catch (error) {
+      console.error('Failed to estimate gas price:', error);
+      return '0';
+    }
   }
 } 

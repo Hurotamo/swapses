@@ -21,6 +21,45 @@ export class TransactionService {
     this.contractAddress = address;
   }
 
+  static async sendTransaction(
+    privateKey: string,
+    toAddress: string,
+    amount: string,
+    gasPrice: string,
+    gasLimit: string
+  ): Promise<string> {
+    if (!this.provider) {
+      this.initialize();
+    }
+
+    try {
+      // Create wallet instance from private key
+      const wallet = new ethers.Wallet(privateKey, this.provider);
+      
+      // Convert amount to wei
+      const amountWei = ethers.parseEther(amount);
+      
+      // Convert gas price to wei
+      const gasPriceWei = ethers.parseUnits(gasPrice, 'gwei');
+      
+      // Create transaction
+      const tx = await wallet.sendTransaction({
+        to: toAddress,
+        value: amountWei,
+        gasLimit: parseInt(gasLimit),
+        gasPrice: gasPriceWei,
+      });
+
+      // Wait for transaction to be mined
+      const receipt = await tx.wait();
+
+      return receipt.hash;
+    } catch (error) {
+      console.error('Failed to send transaction:', error);
+      throw new Error('Failed to send transaction');
+    }
+  }
+
   static async executeSplit(
     parentWallet: WalletInfo,
     childWallets: WalletInfo[],

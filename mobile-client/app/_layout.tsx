@@ -20,7 +20,7 @@ export default function RootLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: 'DWSS - Wallet Splitter',
+          title: 'DWSS Wallet',
         }}
       />
       <Stack.Screen
@@ -39,6 +39,51 @@ export default function RootLayout() {
         name="wallet-list"
         options={{
           title: 'Wallet List',
+        }}
+      />
+      <Stack.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+        }}
+      />
+      <Stack.Screen
+        name="qr-scanner"
+        options={{
+          title: 'Scan QR Code',
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="create-pin"
+        options={{
+          title: 'Create PIN',
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="verify-pin"
+        options={{
+          title: 'Enter PIN',
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name="send"
+        options={{
+          title: 'Send',
+        }}
+      />
+      <Stack.Screen
+        name="receive"
+        options={{
+          title: 'Receive',
+        }}
+      />
+      <Stack.Screen
+        name="transaction-details"
+        options={{
+          title: 'Transaction Details',
         }}
       />
     </Stack>

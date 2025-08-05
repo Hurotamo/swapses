@@ -1,39 +1,65 @@
 {
   "expo": {
-    "name": "DWSS - Wallet Splitter",
-    "slug": "dwss-wallet-splitter",
+    "name": "DWSS - Self-Custodial Wallet",
+    "slug": "dwss-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1a1a1a"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dwss.walletsplitter"
+      "bundleIdentifier": "com.dwss.wallet",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan QR codes for wallet addresses and transactions.",
+        "NSFaceIDUsageDescription": "This app uses Face ID to securely access your wallet."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#1a1a1a"
       },
-      "package": "com.dwss.walletsplitter"
+      "package": "com.dwss.wallet",
+      "permissions": [
+        "CAMERA",
+        "USE_FINGERPRINT",
+        "USE_BIOMETRIC"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-crypto",
+        {
+          "enableBiometrics": true
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Allow DWSS to access your Face ID to secure your wallet."
+        }
+      ]
     ],
     "scheme": "dwss",
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
     }
   }
 } 
